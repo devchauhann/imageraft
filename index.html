@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -60,27 +60,57 @@
     }
     </script>
     
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
+
     <style>
+        /* ============================================
+       CSS VARIABLES — PXL.BITMAP DESIGN SYSTEM
+       ============================================ */
         :root {
-            --bg: #111113;
-            --bg2: #18181b;
-            --surface: #1e1e22;
-            --border: #2a2a30;
-            --border2: #38383f;
-            --text: #ededf0;
-            --text2: #a0a0ab;
-            --text3: #606068;
-            --text4: #404048;
-            --accent: #e0784a;
-            --accent-bg: #261a13;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, .3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, .4);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, .6);
-            --inv-bg: #ededf0;
-            --inv-text: #111113;
+            --bg: #f7f6f3;
+            --bg2: #ffffff;
+            --bg3: #f0efe9;
+            --surface: #ffffff;
+            --surface2: #fafaf8;
+            --border: rgba(0, 0, 0, 0.07);
+            --border2: rgba(0, 0, 0, 0.12);
+            --text: #111110;
+            --text2: #555550;
+            --text3: #888880;
+            --accent: #e63322;
+            --accent2: #ff4433;
+            --accent-bg: rgba(230, 51, 34, 0.07);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --radius-lg: 20px;
+            --font: 'Outfit', sans-serif;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            /* savings colours */
+            --green: #22c55e;
+            --red: #ef4444;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0e0e0d;
+            --bg2: #161614;
+            --bg3: #1c1c1a;
+            --surface: #1e1e1c;
+            --surface2: #232321;
+            --border: rgba(255, 255, 255, 0.07);
+            --border2: rgba(255, 255, 255, 0.12);
+            --text: #f0efe9;
+            --text2: #999990;
+            --text3: #66665e;
+            --accent: #ff4433;
+            --accent2: #ff6655;
+            --accent-bg: rgba(255, 68, 51, 0.1);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
 
         *,
@@ -89,93 +119,93 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased
+            -webkit-font-smoothing: antialiased;
+            scrollbar-width: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: var(--font);
             background: var(--bg);
             color: var(--text);
+            line-height: 1.6;
             min-height: 100vh;
-            overflow-x: hidden;
             display: flex;
-            flex-direction: column
+            flex-direction: column;
+            transition: background var(--transition), color var(--transition);
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 4px
+        /* push footer to bottom */
+        body>.container {
+            flex: 1;
         }
 
-        ::-webkit-scrollbar-track {
-            background: transparent
-        }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--border2);
-            border-radius: 99px
-        }
 
-        /* ── HEADER ── */
+        /* ============================================
+       HEADER
+       ============================================ */
         header {
             position: sticky;
             top: 0;
-            z-index: 90;
-            background: var(--bg);
+            z-index: 100;
+            background: rgba(247, 246, 243, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: background var(--transition);
         }
 
-        .header-inner {
+        [data-theme="dark"] header {
+            background: rgba(14, 14, 13, 0.85);
+        }
+
+        .nav {
             display: flex;
             align-items: center;
-            gap: 16px;
-            max-width: 1200px;
+            justify-content: space-between;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 0 32px;
-            height: 64px
+            padding: 0 24px;
+            height: 56px;
         }
 
-        .logo {
-            display: flex;
-            align-items: baseline;
-            gap: 2px;
-            text-decoration: none;
-            flex-shrink: 0
-        }
-
-        .logo-word {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             color: var(--text);
-            letter-spacing: -0.01em
+            text-decoration: none;
         }
 
-        .logo-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: inline-block;
-            margin: 0 1px 1px 1px;
-            flex-shrink: 0
+        .nav-logo span {
+            color: var(--accent);
         }
 
-        .hdr-spacer {
-            flex: 1
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .hdr-badge {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             color: var(--text3);
-            letter-spacing: 0.05em
         }
 
         .status-dot {
@@ -184,10 +214,10 @@
             border-radius: 50%;
             background: #4ade80;
             flex-shrink: 0;
-            animation: pulse 2.5s infinite
+            animation: blink 2.5s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes blink {
 
             0%,
             100% {
@@ -199,144 +229,207 @@
             }
         }
 
-        /* ── MAIN ── */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 48px 32px 40px;
-            flex: 1;
-            width: 100%
+        .theme-toggle {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* ── HERO ── */
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            color: var(--text);
+        }
+
+        /* ============================================
+       CONTAINER / LAYOUT
+       ============================================ */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ============================================
+       HERO
+       ============================================ */
         .hero {
-            margin-bottom: 42px
+            padding: 56px 0 40px;
         }
 
         .hero-eyebrow {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             color: var(--text3);
-            margin-bottom: 14px
+            margin-bottom: 16px;
         }
 
         .hero h1 {
-            font-family: 'Lora', serif;
-            font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            font-size: clamp(34px, 7vw, 64px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
             color: var(--text);
-            margin-bottom: 12px
         }
 
-        .hero h1 em {
+        .hero h1 .accent {
             color: var(--accent);
-            font-style: italic
+        }
+
+        .hero h1 .thin {
+            font-weight: 300;
         }
 
         .hero-sub {
-            font-size: 0.8rem;
-            color: var(--text3);
-            line-height: 1.65;
-            max-width: 440px
+            font-size: clamp(13px, 2.5vw, 15px);
+            color: var(--text2);
+            max-width: 440px;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
-        /* ── UPLOAD ── */
-        .upload-zone {
+        /* ============================================
+       SECTION LABEL
+       ============================================ */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ============================================
+       CARDS
+       ============================================ */
+        .card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 72px 32px;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        /* ============================================
+       UPLOAD ZONE
+       ============================================ */
+        .upload-zone {
+            border: 2px dashed var(--border2);
+            border-radius: var(--radius);
+            padding: 56px 24px;
             text-align: center;
             cursor: pointer;
-            transition: border-color .2s, background .2s, box-shadow .2s;
+            background: var(--surface2);
             position: relative;
-            margin-top: 8px
+            overflow: hidden;
+            transition: border-color var(--transition), background var(--transition);
+            margin-bottom: 14px;
         }
 
-        .upload-zone:hover {
-            border-color: var(--border2);
-            box-shadow: var(--shadow-md)
-        }
-
+        .upload-zone:hover,
         .upload-zone.drag-over {
             border-color: var(--accent);
-            background: var(--accent-bg)
+            background: var(--accent-bg);
         }
 
         .upload-icon {
-            width: 44px;
-            height: 44px;
-            margin: 0 auto 16px;
-            border: 1px solid var(--border2);
-            border-radius: 8px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg2)
+            margin: 0 auto 16px;
+            color: var(--accent);
         }
 
         .upload-icon svg {
-            stroke: var(--accent);
-            fill: none;
-            width: 18px;
-            height: 18px
+            width: 26px;
+            height: 26px;
         }
 
-        .upload-zone h2 {
-            font-family: 'Lora', serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 5px
+        .upload-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
         }
 
-        .upload-hint {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
+        .upload-subtitle {
+            font-size: 13px;
             color: var(--text3);
-            margin-bottom: 22px;
-            line-height: 1.7
+            margin-bottom: 20px;
         }
 
-        .btn-browse {
+        .upload-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: var(--accent);
-            color: #fff;
+            gap: 7px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 100px;
             border: none;
-            padding: 9px 22px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border-radius: 7px;
             cursor: pointer;
-            transition: all .18s
+            transition: all var(--transition);
+            letter-spacing: 0.01em;
         }
 
-        .btn-browse:hover {
-            background: #d06838;
+        .upload-btn:hover {
+            background: var(--accent);
             transform: translateY(-1px);
-            box-shadow: var(--shadow-md)
+            box-shadow: 0 4px 12px rgba(230, 51, 34, 0.3);
         }
 
-        .file-input {
-            display: none
+        .upload-btn svg {
+            width: 14px;
+            height: 14px;
         }
 
-        /* ── EDITOR ── */
+        #fileInput {
+            display: none;
+        }
+
+        /* ============================================
+       EDITOR LAYOUT
+       ============================================ */
         .editor-layout {
             display: none;
-            animation: up .3s both
+            animation: fadeUp .3s both;
         }
 
-        @keyframes up {
+        @keyframes fadeUp {
             from {
                 opacity: 0;
                 transform: translateY(8px)
@@ -348,64 +441,89 @@
             }
         }
 
-        /* ── COMPARISON (shown FIRST) ── */
-        .comp-wrap {
-            margin-bottom: 20px
-        }
-
+        /* ============================================
+       COMP PREVIEW
+       ============================================ */
         .comp-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
-            gap: 6px
-        }
-
-        .comp-title {
-            font-size: 0.62rem;
-            font-weight: 500;
-            color: var(--text4);
-            letter-spacing: 0.1em;
-            text-transform: uppercase
+            gap: 8px;
         }
 
         .comp-meta-row {
             display: flex;
             gap: 10px;
-            align-items: center
+            align-items: center;
         }
 
         .meta-pill {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.66rem;
-            color: var(--text3)
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text3);
+            background: var(--bg3);
+            border-radius: 100px;
+            padding: 3px 10px;
         }
 
         .meta-pill.savings {
-            color: #4ade80
+            color: var(--green);
+            background: rgba(34, 197, 94, 0.1);
         }
 
         .meta-pill.bigger {
-            color: #f87171
+            color: var(--red);
+            background: rgba(239, 68, 68, 0.1);
         }
 
-        /* The box sizes itself to the image's natural aspect ratio */
+        .comp-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border2);
+            background: var(--surface2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--text2);
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .icon-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         .comp-box {
-            background: var(--bg2);
+            background: repeating-conic-gradient(var(--bg3) 0% 25%, transparent 0% 50%) 0 0 / 16px 16px;
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: var(--radius);
             overflow: hidden;
             position: relative;
             user-select: none;
             touch-action: none;
-            /* aspect-ratio set dynamically via JS */
             width: 100%;
             max-height: 70vh;
-            /* never go crazy tall */
         }
 
-        /* Inner wrapper that holds both images */
         .comp-images {
             position: relative;
             width: 100%;
@@ -426,15 +544,14 @@
         }
 
         .comp-after {
-            z-index: 1
+            z-index: 1;
         }
 
         .comp-before {
             z-index: 2;
-            clip-path: inset(0 50% 0 0)
+            clip-path: inset(0 50% 0 0);
         }
 
-        /* Images fill the box naturally */
         .comp-after img,
         .comp-before img {
             position: absolute;
@@ -446,7 +563,6 @@
             pointer-events: none;
         }
 
-        /* Divider */
         .comp-divider {
             position: absolute;
             top: 0;
@@ -456,7 +572,7 @@
             width: 2px;
             background: var(--accent);
             z-index: 10;
-            pointer-events: none
+            pointer-events: none;
         }
 
         .comp-handle {
@@ -468,41 +584,44 @@
             height: 32px;
             border-radius: 50%;
             background: var(--accent);
-            border: 2px solid rgba(17, 17, 19, .5);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
-            justify-content: center
+            justify-content: center;
         }
 
         .comp-handle svg {
-            width: 11px;
-            height: 11px;
-            fill: #fff
+            width: 12px;
+            height: 12px;
+            fill: #fff;
+            stroke: none;
         }
 
         .comp-label {
             position: absolute;
             bottom: 10px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.58rem;
-            letter-spacing: 0.08em;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 4px;
-            background: rgba(17, 17, 19, .75);
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(0, 0, 0, 0.55);
             backdrop-filter: blur(8px);
-            color: var(--text2);
+            color: #fff;
             z-index: 15;
-            pointer-events: none
+            pointer-events: none;
         }
 
         .comp-label.left {
-            left: 10px
+            left: 10px;
+            color: var(--green);
         }
 
         .comp-label.right {
-            right: 10px
+            right: 10px;
+            color: var(--red);
         }
 
         .comp-drag {
@@ -510,27 +629,55 @@
             inset: 0;
             z-index: 20;
             cursor: ew-resize;
-            background: transparent
+            background: transparent;
         }
 
         .comp-hint {
             text-align: center;
-            margin-top: 6px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.58rem;
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--text4)
+            color: var(--text3);
         }
 
-        /* ── PROGRESS ── */
+        .fullscreen-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            transition: all var(--transition);
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            z-index: 25;
+            backdrop-filter: blur(8px);
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+
+        /* ============================================
+       PROGRESS
+       ============================================ */
         .progress-wrap {
             display: none;
-            height: 2px;
+            height: 3px;
             background: var(--border);
             border-radius: 99px;
             overflow: hidden;
-            margin-bottom: 16px
+            margin-bottom: 14px;
         }
 
         .progress-bar {
@@ -538,384 +685,1018 @@
             width: 0;
             background: var(--accent);
             border-radius: 99px;
-            transition: width .2s ease
+            transition: width .2s ease;
         }
 
-        /* ── PRESETS ── */
+        /* ============================================
+       FORMAT PRESETS (pill tabs)
+       ============================================ */
         .preset-row {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin-bottom: 12px
+            margin-bottom: 14px;
         }
 
         .preset-chip {
-            height: 24px;
-            padding: 0 11px;
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            color: var(--text3);
-            font-family: 'DM Mono', monospace;
-            font-size: 0.62rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            height: 28px;
+            padding: 0 14px;
+            border-radius: 100px;
+            border: 1px solid var(--border2);
+            background: var(--surface);
+            color: var(--text2);
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all .15s
+            transition: all var(--transition);
+            letter-spacing: 0.04em;
         }
 
-        .preset-chip:hover {
-            border-color: var(--border2);
-            color: var(--text)
+        .preset-chip:hover:not(.active) {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .preset-chip.active {
             background: var(--accent);
             border-color: var(--accent);
-            color: #fff
+            color: #fff;
         }
 
-        /* ── CONTROLS GRID ── */
+        /* ============================================
+       CONTROLS CARD
+       ============================================ */
         .controls-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            margin-bottom: 16px
+            gap: 14px;
+            margin-bottom: 0;
         }
 
-        .ctrl {
-            background: var(--surface);
-            padding: 16px 18px;
+        .ctrl-group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px
+            gap: 10px;
+            transition: background var(--transition), border-color var(--transition);
         }
 
         .ctrl-label {
-            font-size: 0.6rem;
-            font-weight: 500;
-            color: var(--text4);
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 0.1em;
-            text-transform: uppercase
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 2px;
+        }
+
+        /* Custom select wrapper */
+        .select-wrap {
+            position: relative;
+        }
+
+        .select-wrap::after {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--text3);
+            pointer-events: none;
         }
 
         .ctrl-select {
+            width: 100%;
             background: transparent;
             border: none;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
             color: var(--text);
             outline: none;
             cursor: pointer;
             appearance: none;
             -webkit-appearance: none;
-            padding: 0
+            padding: 6px 0 6px 0;
+            transition: border-color var(--transition);
+        }
+
+        .ctrl-select:focus {
+            border-bottom-color: var(--accent);
         }
 
         .ctrl-select option {
             background: var(--bg2);
-            color: var(--text)
+            color: var(--text);
         }
 
+        /* Quality row */
         .quality-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 3px
+            margin-bottom: 4px;
         }
 
         .quality-sub {
-            font-size: 0.72rem;
-            color: var(--text3)
+            font-size: 12px;
+            color: var(--text3);
+            font-weight: 500;
         }
 
         .quality-val {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.74rem;
-            color: var(--accent)
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
         }
 
-        .track-slider {
+        input[type="range"] {
             -webkit-appearance: none;
             appearance: none;
             width: 100%;
-            height: 2px;
+            height: 4px;
+            border-radius: 2px;
             background: var(--border2);
-            border-radius: 99px;
             outline: none;
-            cursor: pointer
+            cursor: pointer;
         }
 
-        .track-slider::-webkit-slider-thumb {
+        input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 13px;
-            height: 13px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: var(--accent);
             cursor: pointer;
-            transition: transform .15s;
-            box-shadow: 0 0 0 3px var(--accent-bg)
+            box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+            transition: transform var(--transition);
         }
 
-        .track-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2)
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
         }
 
-        .track-slider:disabled {
-            opacity: .25;
-            cursor: not-allowed
+        input[type="range"]:disabled {
+            opacity: .3;
+            cursor: not-allowed;
         }
 
-        /* ── ACTIONS ── */
+        /* ============================================
+       NEW FEATURES PANEL (collapsible)
+       ============================================ */
+        .features-card {
+            margin-bottom: 14px;
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .feature-header .chevron {
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-sm);
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition);
+            flex-shrink: 0;
+        }
+
+        .feature-header .chevron svg {
+            width: 10px;
+            height: 10px;
+            stroke: var(--text3);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+
+        .feature-header.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .feature-body {
+            margin-top: 16px;
+            display: none;
+        }
+
+        .feature-body.open {
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .feat-group {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .feat-group.full {
+            grid-column: 1/-1;
+        }
+
+        .feat-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text3);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feat-label svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        /* Resize inputs */
+        .resize-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .resize-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 6px 0;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            outline: none;
+            transition: border-color var(--transition);
+        }
+
+        .resize-input:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        .resize-sep {
+            font-size: 13px;
+            color: var(--text3);
+            font-weight: 700;
+        }
+
+        .lock-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--text3);
+            flex-shrink: 0;
+        }
+
+        .lock-btn.locked {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lock-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+
+        /* Flip buttons */
+        .flip-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text2);
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            border-color: var(--text);
+            color: var(--text);
+        }
+
+        .toggle-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        /* Rotate */
+        .rotate-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rotate-btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text2);
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+
+        .rotate-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            min-width: 80px;
+        }
+
+        .stat-key {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text3);
+        }
+
+        .stat-val {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ============================================
+       ACTIONS
+       ============================================ */
         .action-dock {
             display: flex;
-            gap: 7px;
+            gap: 8px;
             justify-content: flex-end;
-            flex-wrap: wrap
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            height: 34px;
-            padding: 0 16px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.76rem;
-            font-weight: 500;
-            border-radius: 7px;
+            gap: 6px;
+            height: 38px;
+            padding: 0 20px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 100px;
             cursor: pointer;
-            transition: all .18s;
-            white-space: nowrap
+            transition: all var(--transition);
+            white-space: nowrap;
+            border: none;
         }
 
         .btn:disabled {
             opacity: .35;
             cursor: not-allowed;
-            pointer-events: none
+            pointer-events: none;
+        }
+
+        .btn svg {
+            width: 13px;
+            height: 13px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .btn-primary {
             background: var(--accent);
             color: #fff;
-            border: 1px solid transparent
         }
 
         .btn-primary:hover {
-            background: #d06838;
+            background: var(--accent2);
             transform: translateY(-1px);
-            box-shadow: var(--shadow-md)
+            box-shadow: 0 4px 12px rgba(230, 51, 34, 0.35);
         }
 
         .btn-secondary {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            color: var(--text2)
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            color: var(--text2);
         }
 
         .btn-secondary:hover {
-            border-color: var(--border2);
+            border-color: var(--text);
             color: var(--text);
-            background: var(--surface)
+            background: var(--surface);
         }
 
-        /* ── FOOTER ── */
+        /* ============================================
+       FULLSCREEN MODAL
+       ============================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn .2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-inner {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .modal-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            transition: all var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--bg3);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .modal-close svg {
+            width: 14px;
+            height: 14px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+        }
+
+        /* modal view modes */
+        .modal-view-tabs {
+            display: flex;
+            gap: 6px;
+        }
+
+        .modal-tab {
+            height: 28px;
+            padding: 0 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .modal-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .modal-comp-box {
+            flex: 1;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: repeating-conic-gradient(rgba(255, 255, 255, 0.05) 0% 25%, transparent 0% 50%) 0 0 / 20px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            user-select: none;
+            touch-action: none;
+            max-height: calc(100vh - 140px);
+        }
+
+        .modal-comp-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-comp-after,
+        .modal-comp-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-comp-after {
+            z-index: 1;
+        }
+
+        .modal-comp-before {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .modal-comp-after img,
+        .modal-comp-before img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .modal-comp-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: var(--accent);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .modal-comp-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-comp-handle svg {
+            width: 14px;
+            height: 14px;
+            fill: #fff;
+            stroke: none;
+        }
+
+        .modal-comp-drag {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            cursor: ew-resize;
+            background: transparent;
+        }
+
+        .modal-comp-label {
+            position: absolute;
+            bottom: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .modal-comp-label.left {
+            left: 12px;
+            color: var(--green);
+        }
+
+        .modal-comp-label.right {
+            right: 12px;
+            color: var(--red);
+        }
+
+        /* Single image view */
+        .modal-single {
+            flex: 1;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            max-height: calc(100vh - 140px);
+        }
+
+        .modal-single img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .modal-single.active {
+            display: flex;
+        }
+
+        .modal-comp-box.hidden {
+            display: none;
+        }
+
+        /* ============================================
+       TOAST
+       ============================================ */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: var(--text);
+            color: var(--bg);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 100px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 500;
+            transition: opacity .22s, transform .22s;
+            white-space: nowrap;
+            box-shadow: var(--shadow-lg);
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============================================
+       FOOTER
+       ============================================ */
+        .container {
+            padding-bottom: 32px;
+        }
+
+        .footer-wrap {
+            background: var(--bg);
+        }
+
         footer {
-            max-width: 1200px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 18px 32px;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 184px;
-            position: relative;
+            gap: 10px;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px;
-            height: 1px;
-            background: var(--border)
+        .ft-logo {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .ft-logo span {
+            color: var(--accent);
         }
 
         .ft-copy {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.63rem;
-            color: var(--text4)
+            font-size: 12px;
+            color: var(--text3);
         }
 
         .ft-link {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.7rem;
+            font-size: 12px;
             color: var(--text3);
             text-decoration: none;
-            transition: color .18s
+            font-weight: 500;
+            transition: color var(--transition);
         }
 
         .ft-link:hover {
-            color: var(--text2)
+            color: var(--accent);
         }
 
-        /* ── TOAST ── */
-        #toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(8px);
-            background: var(--inv-bg);
-            color: var(--inv-text);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.76rem;
-            font-weight: 500;
-            padding: 8px 18px;
-            border-radius: 7px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 500;
-            transition: opacity .22s, transform .22s;
-            white-space: nowrap
+        .ft-link svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
         }
 
-        #toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0)
-        }
-
-        /* ── RESPONSIVE ── */
-        @media(max-width:900px) {
-
-            .header-inner,
-            main,
-            footer {
-                padding-left: 20px;
-                padding-right: 20px
-            }
-
+        /* ============================================
+       RESPONSIVE
+       ============================================ */
+        @media(max-width:700px) {
             .controls-grid {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
-        @media(max-width:600px) {
-            .header-inner {
-                padding: 0 20px;
-                height: 56px
+                grid-template-columns: 1fr 1fr;
             }
 
-            .hdr-badge span:last-child {
-                display: none
+            .features-grid {
+                grid-template-columns: 1fr;
             }
 
-            /* hide text, keep dot */
-            main {
-                padding: 48px 20px 40px
-            }
-
-            footer {
-                padding: 16px 20px;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 12px
-            }
-
-            footer::before {
-                left: 0;
-                right: 0;
-                transform: none;
-                max-width: none;
-                width: auto
-            }
-
-            .hero {
-                margin-bottom: 28px
-            }
-
-            .hero h1 {
-                font-size: 1.55rem
-            }
-
-            .hero-sub {
-                font-size: 0.76rem
-            }
-
-            .hero-eyebrow {
-                margin-bottom: 10px
-            }
-
-            .upload-zone {
-                padding: 52px 20px;
-                margin-top: 8px
-            }
-
-            .upload-hint {
-                display: none
-            }
-
-            .upload-icon {
-                width: 36px;
-                height: 36px;
-                margin-bottom: 12px
-            }
-
-            .upload-zone h2 {
-                font-size: 1rem;
-                margin-bottom: 16px
-            }
-
-            .btn-browse {
-                padding: 8px 18px;
-                font-size: 0.76rem
-            }
-
-            .controls-grid {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .ctrl {
-                padding: 12px 14px;
-                gap: 6px
-            }
-
-            .ctrl-select {
-                font-size: 0.82rem
+            .feat-group.full {
+                grid-column: 1;
             }
 
             .action-dock {
-                flex-direction: column
+                flex-direction: column;
             }
 
             .btn {
                 width: 100%;
                 justify-content: center;
-                height: 38px
             }
 
-            .comp-box {
-                max-height: 55vw
+            footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 8px;
             }
 
-            /* portrait-friendly cap on mobile */
+            /* Show fullscreen button on mobile */
+            .fullscreen-btn {
+                display: flex !important;
+            }
+
+            /* Modal responsive */
+            .modal-overlay {
+                padding: 12px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-inner {
+                max-width: 100%;
+                max-height: calc(100vh - 80px);
+                width: 100%;
+                gap: 0;
+                border-radius: var(--radius);
+            }
+
+            .modal-comp-box {
+                max-height: calc(100vh - 160px);
+                min-height: 300px;
+            }
+
+            .modal-single {
+                max-height: calc(100vh - 160px);
+            }
+
+            .modal-topbar {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .modal-title {
+                font-size: 12px;
+                flex: 1;
+            }
+
+            .modal-close {
+                width: 32px;
+                height: 32px;
+            }
+
+            .modal-view-tabs {
+                gap: 4px;
+                flex: 1;
+                order: 3;
+            }
+
+            .modal-tab {
+                height: 26px;
+                padding: 0 12px;
+                font-size: 10px;
+            }
         }
 
-        @media(max-width:400px) {
+        @media(max-width:440px) {
             .controls-grid {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            /* Modal responsive for small screens */
+            .modal-overlay {
+                padding: 8px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .modal-inner {
+                max-height: calc(100vh - 70px);
+                width: 100%;
+                border-radius: var(--radius);
+            }
+
+            .modal-topbar {
+                padding: 10px 12px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .modal-title {
+                font-size: 11px;
+            }
+
+            .modal-view-tabs {
+                flex: 1;
+                order: 3;
+                gap: 3px;
+            }
+
+            .modal-tab {
+                height: 24px;
+                padding: 0 10px;
+                font-size: 9px;
+            }
+
+            .modal-comp-box {
+                max-height: calc(100vh - 140px);
+                min-height: 250px;
+            }
+
+            .modal-single {
+                max-height: calc(100vh - 140px);
+            }
+
+            .modal-comp-handle {
+                width: 28px;
+                height: 28px;
+            }
+
+            .modal-comp-handle svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .modal-comp-label {
+                font-size: 8px;
+                padding: 2px 6px;
+                bottom: 8px;
+            }
+
+            .modal-comp-label.left {
+                left: 8px;
+            }
+
+            .modal-comp-label.right {
+                right: 8px;
+            }
+
+            .modal-close {
+                width: 28px;
+                height: 28px;
+                flex-shrink: 0;
+            }
+
+            .modal-close svg {
+                width: 12px;
+                height: 12px;
             }
         }
     </style>
@@ -925,66 +1706,72 @@
 
     <!-- HEADER -->
     <header>
-        <div class="header-inner">
-            <a class="logo" href="#"><span class="logo-word">ImageRaft</span><span class="logo-dot"></span></a>
-            <div class="hdr-spacer"></div>
+        <div class="nav">
+            <a class="nav-logo" href="#">Image<span>Raft</span></a>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle dark/light mode">
+                    <!-- Exact PXL.BITMAP theme icon: half-filled circle -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" style="width:20px;height:20px;">
+                        <path fill="currentColor"
+                            d="M512 320C512 214 426 128 320 128L320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN -->
-    <main>
-        <!-- Hero -->
-        <div class="hero">
-            <div class="hero-eyebrow"> </div>
-            <h1>Convert, <em>optimize</em>, export.</h1>
-            <p class="hero-sub">JPEG, PNG, WebP, GIF — processed entirely in your browser. Nothing leaves your device.
-            </p>
+    <div class="container">
+
+        <!-- HERO -->
+        <div class="hero" id="heroSection">
+
+            <h1>Convert, <span class="accent">optimize</span>,<br><span class="thin">export.</span></h1>
+            <p class="hero-sub">JPEG, PNG, WebP, GIF — processed entirely in your browser. Nothing ever leaves your
+                device.</p>
         </div>
 
-        <!-- Upload (shown before image is loaded) -->
-        <section class="upload-zone" id="uploadSection">
+        <!-- UPLOAD ZONE -->
+        <div class="upload-zone" id="uploadSection">
             <div class="upload-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20">
-                    <polyline points="7.25 5.75 10 3 12.75 5.75" fill="#e0784a" stroke="#e0784a" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" data-color="color-2"></polyline>
-                    <line x1="10" y1="13" x2="10" y2="3" fill="#e0784a" stroke="#e0784a" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" data-color="color-2"></line>
+                <!-- Exact icon from provided upload zone: image frame + plus sign -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
-                        d="m6,9.07c-1.216.268-2.168,1.277-2.328,2.557l-.25,2c-.224,1.791,1.172,3.372,2.977,3.372h7.203c1.804,0,3.201-1.582,2.977-3.372l-.25-2c-.16-1.281-1.113-2.289-2.328-2.557"
-                        fill="none" stroke="#e0784a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                    </path>
+                        d="M16.4326 2.25H6.56739C5.61495 2.24999 4.85439 2.24999 4.24013 2.30018C3.61012 2.35165 3.06824 2.45963 2.57054 2.71322C1.77085 3.12068 1.12068 3.77085 0.713223 4.57054C0.459634 5.06824 0.35165 5.61012 0.300176 6.24013C0.249989 6.85439 0.249994 7.61494 0.25 8.56738V14.4326C0.249994 15.3851 0.249989 16.1456 0.300176 16.7599C0.35165 17.3899 0.459634 17.9318 0.713223 18.4295C1.09522 19.1792 1.69053 19.7975 2.42237 20.2076C2.47116 20.2349 2.52056 20.2613 2.57054 20.2868C3.06824 20.5404 3.61033 20.6485 4.24034 20.6999C4.85459 20.7501 5.61511 20.7501 6.56751 20.7501H12.9652C13.0072 20.7501 13.0487 20.7466 13.0894 20.7398C13.1841 20.724 13.2728 20.6905 13.3519 20.6428C13.4176 20.6033 13.4775 20.5535 13.5291 20.4947C13.5538 20.4664 13.5763 20.4366 13.5963 20.4054C13.6597 20.3069 13.7007 20.1926 13.712 20.0697C13.7157 20.03 13.7163 19.9899 13.7135 19.9497C13.7123 19.9303 13.7102 19.9111 13.7075 19.8921C13.6696 19.6004 13.65 19.3027 13.65 19C13.65 15.6625 16.0376 12.8811 19.1982 12.2734C19.4708 12.221 19.6922 12.0223 19.7736 11.7569C19.855 11.4915 19.7832 11.2029 19.5869 11.0066L17.2375 8.65709C16.5541 7.97369 15.446 7.97368 14.7626 8.65707L8.99932 14.4201L7.75668 13.1772C7.07325 12.4936 5.96501 12.4935 5.28155 13.1771L1.79722 16.662L1.79519 16.6377C1.75058 16.0917 1.75 15.3925 1.75 14.4V8.6C1.75 7.60753 1.75058 6.90829 1.79519 6.36228C1.83909 5.82503 1.92184 5.50252 2.04973 5.25153C2.31338 4.73408 2.73408 4.31338 3.25153 4.04973C3.50252 3.92184 3.82503 3.83909 4.36228 3.79519C4.90829 3.75058 5.60753 3.75 6.6 3.75H16.4C17.3925 3.75 18.0917 3.75058 18.6377 3.79519C19.175 3.83909 19.4975 3.92184 19.7485 4.04973C20.2659 4.31338 20.6866 4.73408 20.9503 5.25153C21.0782 5.50252 21.1609 5.82503 21.2048 6.36228C21.2494 6.90829 21.25 7.60753 21.25 8.6V11.548C21.25 11.9622 21.5858 12.298 22 12.298C22.4142 12.298 22.75 11.9622 22.75 11.548V8.56737C22.75 7.61496 22.75 6.85438 22.6998 6.24013C22.6483 5.61012 22.5404 5.06824 22.2868 4.57054C21.8793 3.77085 21.2291 3.12068 20.4295 2.71322C19.9318 2.45963 19.3899 2.35165 18.7599 2.30018C18.1456 2.24999 17.3851 2.24999 16.4326 2.25Z"
+                        fill="currentColor" />
+                    <path
+                        d="M7 6.5C5.89543 6.5 5 7.39543 5 8.5C5 9.60457 5.89543 10.5 7 10.5C8.10457 10.5 9 9.60457 9 8.5C9 7.39543 8.10457 6.5 7 6.5Z"
+                        fill="currentColor" />
+                    <path
+                        d="M23.75 18C23.75 18.4142 23.4142 18.75 23 18.75H20.75V21C20.75 21.4142 20.4142 21.75 20 21.75C19.5858 21.75 19.25 21.4142 19.25 21V18.75H17C16.5858 18.75 16.25 18.4142 16.25 18C16.25 17.5858 16.5858 17.25 17 17.25H19.25V15C19.25 14.5858 19.5858 14.25 20 14.25C20.4142 14.25 20.75 14.5858 20.75 15V17.25H23C23.4142 17.25 23.75 17.5858 23.75 18Z"
+                        fill="currentColor" />
                 </svg>
             </div>
-            <h2>Drop your image here</h2>
-            <p class="upload-hint">JPEG · PNG · WebP · GIF &nbsp;·&nbsp; Max 50 MB </p>
-            <button class="btn-browse" id="chooseFileBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 20 20">
-                    <path
-                        d="m13.5,6h-3.5l-1.703-2.555c-.185-.278-.498-.445-.832-.445h-2.965c-.828,0-1.5.672-1.5,1.5v9.5c0,.781.299,1.491.789,2.025-.254-.42-.365-.931-.248-1.459l1.111-5c.203-.915,1.015-1.566,1.952-1.566h8.396v-.5c0-.828-.672-1.5-1.5-1.5Z"
-                        fill="rgba(255, 255, 255, 1)" stroke="rgba(255, 255, 255, 1)" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2" data-color="color-2"></path>
-                    <path
-                        d="m14.041,17H5.493c-1.279,0-2.23-1.185-1.952-2.434l1.111-5c.203-.915,1.015-1.566,1.952-1.566h8.548c1.279,0,2.23,1.185,1.952,2.434l-1.111,5c-.203.915-1.015,1.566-1.952,1.566Z"
-                        fill="none" stroke="rgba(255, 255, 255, 1)" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2"></path>
+            <div class="upload-title">Drop your image here</div>
+            <div class="upload-subtitle">JPEG · PNG · WebP · GIF &nbsp;·&nbsp; Max 50 MB</div>
+            <button class="upload-btn" id="chooseFileBtn">
+                <!-- Exact icon from provided browse button: upload arrow to tray -->
+                <svg width="13" height="13" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                        d="M256 109.3L256 320c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-210.7-41.4 41.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l96-96c12.5-12.5 32.8-12.5 45.3 0l96 96c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 109.3zM224 400c44.2 0 80-35.8 80-80l80 0c35.3 0 64 28.7 64 64l0 32c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64l0-32c0-35.3 28.7-64 64-64l80 0c0 44.2 35.8 80 80 80zm144 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
                 </svg>
-                Browse Files
+                Choose File
             </button>
             <input type="file" id="fileInput" class="file-input" accept="image/*" />
-        </section>
+        </div>
 
-        <!-- Editor (shown after image loaded) — PREVIEW FIRST, controls below -->
+        <!-- EDITOR (shown after image loaded) -->
         <section class="editor-layout" id="controlsSection">
 
-            <!-- 1. COMPARISON PREVIEW (top) -->
-            <div class="comp-wrap" id="previewSection" style="display:none">
+            <!-- COMPARISON PREVIEW -->
+            <div id="previewSection" style="display:none; margin-bottom:14px;">
                 <div class="comp-header">
                     <div class="comp-meta-row">
                         <span class="meta-pill" id="originalInfo"></span>
                         <span class="meta-pill" id="savingsInfo"></span>
                     </div>
                 </div>
-                <div class="comp-box" id="compBox">
+
+                <div class="comp-box" id="compBox" style="cursor:pointer;" title="Click to view fullscreen comparison">
                     <div class="comp-images" id="compImages">
                         <div class="comp-after"><img id="convertedImage" alt="Converted" /></div>
                         <div class="comp-before" id="compBefore"><img id="originalImage" alt="Original" /></div>
@@ -997,18 +1784,40 @@
                         </div>
                         <span class="comp-label left">Original</span>
                         <span class="comp-label right" id="outputLabel">Output</span>
+                        <button class="fullscreen-btn" id="fullscreenBtn" title="View fullscreen" style="display:none;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                            </svg>
+                        </button>
                         <div class="comp-drag" id="compDrag"></div>
                     </div>
                 </div>
-                <p class="comp-hint">← drag to compare →</p>
+                <p class="comp-hint">← drag divider to compare → or click to view fullscreen</p>
+
+                <!-- Image stats bar -->
+                <div class="stats-bar" id="statsBar" style="margin-top:12px;display:none;">
+                    <div class="stat-item"><span class="stat-key">Dimensions</span><span class="stat-val"
+                            id="statDim">—</span></div>
+                    <div class="stat-item"><span class="stat-key">Original</span><span class="stat-val"
+                            id="statOrig">—</span></div>
+                    <div class="stat-item"><span class="stat-key">Output</span><span class="stat-val"
+                            id="statOut">—</span></div>
+                    <div class="stat-item"><span class="stat-key">Format</span><span class="stat-val"
+                            id="statFmt">—</span></div>
+                    <div class="stat-item"><span class="stat-key">Savings</span><span class="stat-val"
+                            id="statSave">—</span></div>
+                </div>
             </div>
 
-            <!-- 2. PROGRESS -->
+            <!-- PROGRESS -->
             <div class="progress-wrap" id="progressContainer">
                 <div class="progress-bar" id="progressFill"></div>
             </div>
 
-            <!-- 3. FORMAT PRESETS -->
+            <!-- FORMAT PRESET PILLS -->
+            <div class="section-label">Quick Format</div>
             <div class="preset-row">
                 <button class="preset-chip" data-format="jpeg">JPEG</button>
                 <button class="preset-chip" data-format="png">PNG</button>
@@ -1016,94 +1825,250 @@
                 <button class="preset-chip" data-format="gif">GIF</button>
             </div>
 
-            <!-- 4. CONTROLS -->
-            <div class="controls-grid">
-                <div class="ctrl">
-                    <span class="ctrl-label">Export Format</span>
-                    <select id="formatSelect" class="ctrl-select">
-                        <option value="jpeg">JPEG</option>
-                        <option value="png">PNG</option>
-                        <option value="webp">WebP</option>
-                        <option value="gif">GIF</option>
-                    </select>
-                </div>
-                <div class="ctrl" id="qualityGroup">
-                    <span class="ctrl-label">Quality</span>
-                    <div class="quality-row">
-                        <span class="quality-sub">Compression</span>
-                        <span class="quality-val" id="qualityValue">90%</span>
+            <!-- MAIN CONTROLS -->
+            <div class="card" style="padding:20px;">
+                <div class="section-label">Settings</div>
+                <div class="controls-grid">
+                    <!-- Format -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Export Format</span>
+                        <div class="select-wrap">
+                            <select id="formatSelect" class="ctrl-select">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WebP</option>
+                                <option value="gif">GIF</option>
+                            </select>
+                        </div>
                     </div>
-                    <input type="range" id="qualitySlider" class="track-slider" min="10" max="100" value="90" />
-                </div>
-                <div class="ctrl">
-                    <span class="ctrl-label">Background Fill</span>
-                    <select id="backgroundSelect" class="ctrl-select">
-                        <option value="white">White</option>
-                        <option value="black">Black</option>
-                        <option value="transparent">Transparent</option>
-                    </select>
+
+                    <!-- Quality -->
+                    <div class="ctrl-group" id="qualityGroup">
+                        <span class="ctrl-label">Quality</span>
+                        <div class="quality-row">
+                            <span class="quality-sub">Compression</span>
+                            <span class="quality-val" id="qualityValue">90%</span>
+                        </div>
+                        <input type="range" id="qualitySlider" min="10" max="100" value="90" />
+                    </div>
+
+                    <!-- Background -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Background Fill</span>
+                        <div class="select-wrap">
+                            <select id="backgroundSelect" class="ctrl-select">
+                                <option value="white">White</option>
+                                <option value="black">Black</option>
+                                <option value="transparent">Transparent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Resize -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Resize Output</span>
+                        <div class="resize-row">
+                            <input type="number" id="resizeW" class="resize-input" placeholder="W" min="1" max="8000" />
+                            <span class="resize-sep">×</span>
+                            <input type="number" id="resizeH" class="resize-input" placeholder="H" min="1" max="8000" />
+                            <button class="lock-btn locked" id="lockAspect" title="Lock aspect ratio">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                </svg>
+                            </button>
+                        </div>
+                        <span style="font-size:11px;color:var(--text3);">Leave blank to keep original size</span>
+                    </div>
+
+                    <!-- Flip / Mirror -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Flip / Mirror</span>
+                        <div class="flip-row">
+                            <button class="toggle-btn" id="flipH">
+                                <svg viewBox="0 0 24 24">
+                                    <line x1="12" y1="3" x2="12" y2="21" />
+                                    <polyline points="9 7 12 3 15 7" />
+                                    <polyline points="9 17 12 21 15 17" />
+                                </svg>
+                                Horizontal
+                            </button>
+                            <button class="toggle-btn" id="flipV">
+                                <svg viewBox="0 0 24 24">
+                                    <line x1="3" y1="12" x2="21" y2="12" />
+                                    <polyline points="7 9 3 12 7 15" />
+                                    <polyline points="17 9 21 12 17 15" />
+                                </svg>
+                                Vertical
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rotate -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Rotate</span>
+                        <div class="rotate-row">
+                            <button class="rotate-btn" data-rotate="-90">↺ 90°</button>
+                            <button class="rotate-btn" data-rotate="90">↻ 90°</button>
+                            <button class="rotate-btn" data-rotate="180">180°</button>
+                        </div>
+                    </div>
+
+                    <!-- Colour Mode -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Colour Mode</span>
+                        <div class="select-wrap">
+                            <select id="colourMode" class="ctrl-select">
+                                <option value="original">Original (full colour)</option>
+                                <option value="grayscale">Grayscale</option>
+                                <option value="sepia">Sepia</option>
+                                <option value="invert">Invert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Brightness / Contrast -->
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Brightness</span>
+                        <div class="quality-row">
+                            <span class="quality-sub">Adjust</span>
+                            <span class="quality-val" id="brightnessVal">0</span>
+                        </div>
+                        <input type="range" id="brightnessSlider" min="-100" max="100" value="0" />
+                    </div>
+
+                    <div class="ctrl-group">
+                        <span class="ctrl-label">Contrast</span>
+                        <div class="quality-row">
+                            <span class="quality-sub">Adjust</span>
+                            <span class="quality-val" id="contrastVal">0</span>
+                        </div>
+                        <input type="range" id="contrastSlider" min="-100" max="100" value="0" />
+                    </div>
                 </div>
             </div>
 
-            <!-- 5. ACTIONS -->
+            <!-- ACTIONS -->
             <div class="action-dock">
                 <button id="resetBtn" class="btn btn-secondary" style="display:none">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+                    <svg viewBox="0 0 24 24">
                         <path d="M3 2v6h6" />
                         <path d="M3 8a9 9 0 1 0 2.7-4.5" />
                     </svg>
                     Reset
                 </button>
                 <button id="downloadBtn" class="btn btn-secondary" style="display:none">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                         <polyline points="7 10 12 15 17 10" />
                         <line x1="12" y1="15" x2="12" y2="3" />
                     </svg>
                     Download
                 </button>
                 <button id="convertBtn" class="btn btn-primary" style="display:none">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round">
+                    <svg viewBox="0 0 24 24">
                         <polyline points="23 4 23 10 17 10" />
                         <polyline points="1 20 1 14 7 14" />
-                        <path d="M3.51 9a9 9 0 0115.36-3.36L23 10" />
-                        <path d="M20.49 15a9 9 0 01-15.36 3.36L1 14" />
+                        <path d="M3.51 9a9 9 0 0 1 15.36-3.36L23 10M20.49 15a9 9 0 0 1-15.36 3.36L1 14" />
                     </svg>
                     Process &amp; Export
                 </button>
             </div>
 
         </section>
-    </main>
+    </div><!-- /container -->
 
     <!-- FOOTER -->
-    <footer>
-        <a class="logo" href="#"><span class="logo-word">ImageRaft</span><span class="logo-dot"></span></a>
-        <span class="ft-copy">Fast, private image conversion. Nothing leaves your device.</span>
-        <a href="https://github.com/devchauhann" target="_blank" rel="noopener" class="ft-link">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                    d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
-            </svg>
-            GitHub
-        </a>
-        <span class="ft-copy">© 2025 imageraft</span>
-    </footer>
+    <div class="footer-wrap">
+        <footer>
+            <a class="ft-logo" href="#">Image<span>Raft</span></a>
+            <span class="ft-copy">Fast, private image conversion. Nothing leaves your device.</span>
+            <a href="https://github.com/devchauhann" target="_blank" rel="noopener" class="ft-link">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.686-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.593 1.028 2.686 0 3.847-2.337 4.695-4.566 4.944.359.309.678.919.678 1.852 0 1.336-.012 2.417-.012 2.747 0 .267.18.577.688.48C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
+                </svg>
+                GitHub
+            </a>
+        </footer>
+    </div>
 
+    <!-- TOAST -->
     <div id="toast"></div>
 
+    <!-- FULLSCREEN MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-inner">
+            <div class="modal-topbar">
+                <div class="modal-title">Full-Page Comparison</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="modal-view-tabs">
+                        <button class="modal-tab active" data-mview="compare">Compare</button>
+                        <button class="modal-tab" data-mview="original">Original</button>
+                        <button class="modal-tab" data-mview="output">Output</button>
+                    </div>
+                    <button class="modal-close" id="modalClose">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Compare view -->
+            <div class="modal-comp-box" id="modalCompBox">
+                <div class="modal-comp-images" id="modalCompImages">
+                    <div class="modal-comp-after"><img id="modalConvertedImg" alt="Output" /></div>
+                    <div class="modal-comp-before" id="modalCompBefore"><img id="modalOriginalImg" alt="Original" />
+                    </div>
+                    <div class="modal-comp-divider" id="modalCompDivider">
+                        <div class="modal-comp-handle">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5l-5 7 5 7M16 5l5 7-5 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="modal-comp-label left">Original</span>
+                    <span class="modal-comp-label right" id="modalOutputLabel">Output</span>
+                    <div class="modal-comp-drag" id="modalCompDrag"></div>
+                </div>
+            </div>
+
+            <!-- Single views -->
+            <div class="modal-single" id="modalSingleOrig"><img id="modalSingleOrigImg" alt="Original full" /></div>
+            <div class="modal-single" id="modalSingleOut"><img id="modalSingleOutImg" alt="Output full" /></div>
+        </div>
+    </div>
+
     <script>
+        /* ============================================
+           THEME TOGGLE
+           ============================================ */
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+
+        function applyTheme(dark) {
+            html.dataset.theme = dark ? 'dark' : 'light';
+        }
+        applyTheme(true);
+        themeToggle.addEventListener('click', () => applyTheme(html.dataset.theme !== 'dark'));
+
+        /* ============================================
+           MAIN IMAGE CONVERTER
+           ============================================ */
         class ImageConverter {
             constructor() {
                 this.originalFile = null;
                 this.convertedBlob = null;
                 this.isDragging = false;
                 this.imgW = 0; this.imgH = 0;
+                this.rotation = 0;   // degrees (0,90,180,270)
+                this.flipH = false;
+                this.flipV = false;
                 this.init();
             }
+
             init() {
                 const g = id => document.getElementById(id);
                 this.uploadSection = g('uploadSection');
@@ -1124,7 +2089,6 @@
                 this.savingsInfo = g('savingsInfo');
                 this.outputLabel = g('outputLabel');
                 this.convertBtn = g('convertBtn');
-                this.hero = document.querySelector('.hero');
                 this.downloadBtn = g('downloadBtn');
                 this.resetBtn = g('resetBtn');
                 this.compBox = g('compBox');
@@ -1134,9 +2098,38 @@
                 this.compDrag = g('compDrag');
                 this.presetBtns = document.querySelectorAll('.preset-chip');
                 this.toast = g('toast');
+                this.hero = g('heroSection');
+                this.statsBar = g('statsBar');
+                this.expandBtn = g('expandBtn');
+                // advanced controls
+                this.resizeW = g('resizeW');
+                this.resizeH = g('resizeH');
+                this.lockAspect = g('lockAspect');
+                this.colourMode = g('colourMode');
+                this.brightnessSlider = g('brightnessSlider');
+                this.brightnessVal = g('brightnessVal');
+                this.contrastSlider = g('contrastSlider');
+                this.contrastVal = g('contrastVal');
+                // modal
+                this.modalOverlay = g('modalOverlay');
+                this.modalClose = g('modalClose');
+                this.modalCompBox = g('modalCompBox');
+                this.modalCompImages = g('modalCompImages');
+                this.modalCompBefore = g('modalCompBefore');
+                this.modalCompDivider = g('modalCompDivider');
+                this.modalCompDrag = g('modalCompDrag');
+                this.modalOriginalImg = g('modalOriginalImg');
+                this.modalConvertedImg = g('modalConvertedImg');
+                this.modalOutputLabel = g('modalOutputLabel');
+                this.modalSingleOrig = g('modalSingleOrig');
+                this.modalSingleOut = g('modalSingleOut');
+                this.modalSingleOrigImg = g('modalSingleOrigImg');
+                this.modalSingleOutImg = g('modalSingleOutImg');
                 this.bind();
             }
+
             bind() {
+                // upload
                 this.uploadSection.addEventListener('click', () => this.fileInput.click());
                 this.chooseFileBtn.addEventListener('click', e => { e.stopPropagation(); this.fileInput.click(); });
                 this.fileInput.addEventListener('change', e => e.target.files[0] && this.handleFile(e.target.files[0]));
@@ -1146,12 +2139,43 @@
                     e.preventDefault(); this.uploadSection.classList.remove('drag-over');
                     if (e.dataTransfer.files.length) this.handleFile(e.dataTransfer.files[0]);
                 });
+
+                // main controls
                 this.formatSelect.addEventListener('change', () => this.onFormatChange());
-                this.qualitySlider.addEventListener('input', () => {
-                    this.qualityValue.textContent = this.qualitySlider.value + '%';
-                    this.updatePreview();
+                this.qualitySlider.addEventListener('input', () => { this.qualityValue.textContent = this.qualitySlider.value + '%'; this.debouncePreview(); });
+                this.backgroundSelect.addEventListener('change', () => this.debouncePreview());
+                this.colourMode.addEventListener('change', () => this.debouncePreview());
+                this.brightnessSlider.addEventListener('input', () => { this.brightnessVal.textContent = this.brightnessSlider.value; this.debouncePreview(); });
+                this.contrastSlider.addEventListener('input', () => { this.contrastVal.textContent = this.contrastSlider.value; this.debouncePreview(); });
+
+                // resize
+                this.resizeW.addEventListener('input', () => {
+                    if (this.lockAspect.classList.contains('locked') && this.imgW && this.imgH) {
+                        const ratio = this.imgH / this.imgW;
+                        this.resizeH.value = Math.round(this.resizeW.value * ratio) || '';
+                    }
+                    this.debouncePreview();
                 });
-                this.backgroundSelect.addEventListener('change', () => this.updatePreview());
+                this.resizeH.addEventListener('input', () => {
+                    if (this.lockAspect.classList.contains('locked') && this.imgW && this.imgH) {
+                        const ratio = this.imgW / this.imgH;
+                        this.resizeW.value = Math.round(this.resizeH.value * ratio) || '';
+                    }
+                    this.debouncePreview();
+                });
+                this.lockAspect.addEventListener('click', () => this.lockAspect.classList.toggle('locked'));
+
+                // flip
+                document.getElementById('flipH').addEventListener('click', () => { this.flipH = !this.flipH; document.getElementById('flipH').classList.toggle('active', this.flipH); this.debouncePreview(); });
+                document.getElementById('flipV').addEventListener('click', () => { this.flipV = !this.flipV; document.getElementById('flipV').classList.toggle('active', this.flipV); this.debouncePreview(); });
+
+                // rotate
+                document.querySelectorAll('[data-rotate]').forEach(btn => btn.addEventListener('click', () => {
+                    this.rotation = (this.rotation + parseInt(btn.dataset.rotate) + 360) % 360;
+                    this.debouncePreview();
+                }));
+
+                // preset chips
                 this.presetBtns.forEach(btn => btn.addEventListener('click', e => {
                     e.stopPropagation();
                     this.presetBtns.forEach(b => b.classList.remove('active'));
@@ -1159,10 +2183,31 @@
                     this.formatSelect.value = btn.dataset.format;
                     this.onFormatChange();
                 }));
+
+                // actions
                 this.convertBtn.addEventListener('click', () => this.convert());
                 this.downloadBtn.addEventListener('click', () => this.download());
                 this.resetBtn.addEventListener('click', () => this.reset());
+                // expand modal
+                this.compBox.addEventListener('click', () => this.openModal());
+                document.getElementById('fullscreenBtn').addEventListener('click', (e) => { e.stopPropagation(); this.openModal(); });
+                this.modalClose.addEventListener('click', () => this.closeModal());
+                this.modalOverlay.addEventListener('click', e => { if (e.target === this.modalOverlay) this.closeModal(); });
+                document.addEventListener('keydown', e => { if (e.key === 'Escape') this.closeModal(); });
+
+                // modal view tabs
+                document.querySelectorAll('[data-mview]').forEach(tab => tab.addEventListener('click', () => {
+                    document.querySelectorAll('[data-mview]').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    const v = tab.dataset.mview;
+                    this.modalCompBox.classList.toggle('hidden', v !== 'compare');
+                    this.modalSingleOrig.classList.toggle('active', v === 'original');
+                    this.modalSingleOut.classList.toggle('active', v === 'output');
+                }));
+
+                // sliders
                 this.bindSlider();
+                this.bindModalSlider();
             }
 
             bindSlider() {
@@ -1174,12 +2219,29 @@
                     this.compBefore.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
                     this.compDivider.style.left = p + '%';
                 };
-                this.compDrag.addEventListener('mousedown', e => { this.isDragging = true; set(pct(e.clientX)); e.preventDefault(); });
-                window.addEventListener('mousemove', e => { if (this.isDragging) set(pct(e.clientX)); });
-                window.addEventListener('mouseup', () => { this.isDragging = false; });
-                this.compDrag.addEventListener('touchstart', e => { this.isDragging = true; set(pct(e.touches[0].clientX)); e.preventDefault(); }, { passive: false });
-                window.addEventListener('touchmove', e => { if (this.isDragging) set(pct(e.touches[0].clientX)); }, { passive: false });
-                window.addEventListener('touchend', () => { this.isDragging = false; });
+                this.compDrag.addEventListener('mousedown', e => { this._drag = true; set(pct(e.clientX)); e.preventDefault(); });
+                window.addEventListener('mousemove', e => { if (this._drag) set(pct(e.clientX)); });
+                window.addEventListener('mouseup', () => { this._drag = false; });
+                this.compDrag.addEventListener('touchstart', e => { this._drag = true; set(pct(e.touches[0].clientX)); e.preventDefault(); }, { passive: false });
+                window.addEventListener('touchmove', e => { if (this._drag) set(pct(e.touches[0].clientX)); }, { passive: false });
+                window.addEventListener('touchend', () => { this._drag = false; });
+            }
+
+            bindModalSlider() {
+                const pct = cx => {
+                    const r = this.modalCompImages.getBoundingClientRect();
+                    return Math.max(2, Math.min(98, ((cx - r.left) / r.width) * 100));
+                };
+                const set = p => {
+                    this.modalCompBefore.style.clipPath = `inset(0 ${100 - p}% 0 0)`;
+                    this.modalCompDivider.style.left = p + '%';
+                };
+                this.modalCompDrag.addEventListener('mousedown', e => { this._mdrag = true; set(pct(e.clientX)); e.preventDefault(); });
+                window.addEventListener('mousemove', e => { if (this._mdrag) set(pct(e.clientX)); });
+                window.addEventListener('mouseup', () => { this._mdrag = false; });
+                this.modalCompDrag.addEventListener('touchstart', e => { this._mdrag = true; set(pct(e.touches[0].clientX)); e.preventDefault(); }, { passive: false });
+                window.addEventListener('touchmove', e => { if (this._mdrag) set(pct(e.touches[0].clientX)); }, { passive: false });
+                window.addEventListener('touchend', () => { this._mdrag = false; });
             }
 
             handleFile(file) {
@@ -1191,6 +2253,8 @@
                     this.originalImage.onload = () => {
                         this.imgW = this.originalImage.naturalWidth;
                         this.imgH = this.originalImage.naturalHeight;
+                        this.resizeW.value = this.imgW;
+                        this.resizeH.value = this.imgH;
                         this.applyAspectRatio();
                         this.showEditor();
                         this.updatePreview();
@@ -1199,13 +2263,9 @@
                 reader.readAsDataURL(file);
             }
 
-            /* Set comp-box aspect-ratio to match the real image so it never has dead space */
             applyAspectRatio() {
                 if (!this.imgW || !this.imgH) return;
-                const ratio = this.imgW / this.imgH;
-                // Cap: landscape max 70vh tall, portrait max 80vw wide
                 this.compBox.style.aspectRatio = `${this.imgW} / ${this.imgH}`;
-                // For very tall portrait images, limit width so it doesn't take forever
                 if (this.imgH > this.imgW) {
                     const maxW = Math.min(this.imgW, window.innerWidth < 600 ? window.innerWidth - 28 : 680);
                     this.compBox.style.maxWidth = maxW + 'px';
@@ -1214,7 +2274,6 @@
                     this.compBox.style.maxWidth = '';
                     this.compBox.style.margin = '';
                 }
-                // Also size the inner images wrapper to match
                 this.compImages.style.height = '100%';
             }
 
@@ -1223,9 +2282,12 @@
                 this.hero.style.display = 'none';
                 this.controlsSection.style.display = 'block';
                 this.previewSection.style.display = 'block';
-                this.convertBtn.style.display = 'inline-flex';
-                this.resetBtn.style.display = 'inline-flex';
+                ['convertBtn', 'downloadBtn', 'resetBtn'].forEach(id => { document.getElementById(id).style.display = 'inline-flex'; });
                 this.originalInfo.textContent = `Original · ${(this.originalFile.size / 1024).toFixed(1)} KB · ${this.imgW}×${this.imgH}`;
+                this.statsBar.style.display = 'flex';
+                document.getElementById('statDim').textContent = `${this.imgW} × ${this.imgH}`;
+                document.getElementById('statOrig').textContent = `${(this.originalFile.size / 1024).toFixed(1)} KB`;
+                document.getElementById('statFmt').textContent = this.formatSelect.value.toUpperCase();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
@@ -1234,56 +2296,123 @@
                 const lossy = f === 'jpeg' || f === 'webp';
                 this.qualityGroup.style.opacity = lossy ? '1' : '0.3';
                 this.qualitySlider.disabled = !lossy;
+                document.getElementById('statFmt').textContent = f.toUpperCase();
                 this.updatePreview();
+            }
+
+            buildCanvas() {
+                const format = this.formatSelect.value;
+                const bg = this.backgroundSelect.value;
+                const bri = parseInt(this.brightnessSlider.value);
+                const con = parseInt(this.contrastSlider.value);
+                const cm = this.colourMode.value;
+                const tW = parseInt(this.resizeW.value) || this.imgW;
+                const tH = parseInt(this.resizeH.value) || this.imgH;
+
+                // Account for rotation dimensions swap
+                const deg = this.rotation;
+                const swapped = deg === 90 || deg === 270;
+                const canvW = swapped ? tH : tW;
+                const canvH = swapped ? tW : tH;
+
+                const canvas = document.createElement('canvas');
+                canvas.width = canvW; canvas.height = canvH;
+                const ctx = canvas.getContext('2d');
+
+                // Background
+                if (format === 'jpeg' && bg !== 'transparent') {
+                    ctx.fillStyle = bg; ctx.fillRect(0, 0, canvW, canvH);
+                }
+
+                // Apply transforms
+                ctx.save();
+                ctx.translate(canvW / 2, canvH / 2);
+                if (this.flipH) ctx.scale(-1, 1);
+                if (this.flipV) ctx.scale(1, -1);
+                ctx.rotate((deg * Math.PI) / 180);
+                ctx.drawImage(this.originalImage, -tW / 2, -tH / 2, tW, tH);
+                ctx.restore();
+
+                // Colour mode filter
+                if (cm !== 'original') {
+                    const imgData = ctx.getImageData(0, 0, canvW, canvH);
+                    const d = imgData.data;
+                    for (let i = 0; i < d.length; i += 4) {
+                        let r = d[i], g = d[i + 1], b = d[i + 2];
+                        if (cm === 'grayscale') { const v = 0.299 * r + 0.587 * g + 0.114 * b; d[i] = d[i + 1] = d[i + 2] = v; }
+                        else if (cm === 'sepia') { d[i] = Math.min(255, r * .393 + g * .769 + b * .189); d[i + 1] = Math.min(255, r * .349 + g * .686 + b * .168); d[i + 2] = Math.min(255, r * .272 + g * .534 + b * .131); }
+                        else if (cm === 'invert') { d[i] = 255 - r; d[i + 1] = 255 - g; d[i + 2] = 255 - b; }
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
+                // Brightness / Contrast
+                if (bri !== 0 || con !== 0) {
+                    const imgData = ctx.getImageData(0, 0, canvW, canvH);
+                    const d = imgData.data;
+                    const briF = bri * 2.55;
+                    const conF = (259 * (con + 255)) / (255 * (259 - con));
+                    for (let i = 0; i < d.length; i += 4) {
+                        d[i] = Math.min(255, Math.max(0, conF * (d[i] + briF - 128) + 128));
+                        d[i + 1] = Math.min(255, Math.max(0, conF * (d[i + 1] + briF - 128) + 128));
+                        d[i + 2] = Math.min(255, Math.max(0, conF * (d[i + 2] + briF - 128) + 128));
+                    }
+                    ctx.putImageData(imgData, 0, 0);
+                }
+
+                return canvas;
             }
 
             updatePreview() {
                 if (!this.originalImage.src || !this.imgW) return;
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = this.imgW; canvas.height = this.imgH;
-                const format = this.formatSelect.value, bg = this.backgroundSelect.value;
-                if (format === 'jpeg' && bg !== 'transparent') { ctx.fillStyle = bg; ctx.fillRect(0, 0, canvas.width, canvas.height); }
-                ctx.drawImage(this.originalImage, 0, 0);
+                const format = this.formatSelect.value;
                 const q = (format === 'jpeg' || format === 'webp') ? this.qualitySlider.value / 100 : undefined;
+                const canvas = this.buildCanvas();
                 this.convertedImage.src = canvas.toDataURL(`image/${format}`, q);
+
+                // Sync modal images
+                this.modalOriginalImg.src = this.originalImage.src;
+                this.modalConvertedImg.src = this.convertedImage.src;
+                this.modalSingleOrigImg.src = this.originalImage.src;
+                this.modalSingleOutImg.src = this.convertedImage.src;
+                this.modalOutputLabel.textContent = format.toUpperCase();
 
                 canvas.toBlob(blob => {
                     if (!blob || !this.originalFile) return;
                     const kb = (blob.size / 1024).toFixed(1);
                     const saved = Math.round(((this.originalFile.size - blob.size) / this.originalFile.size) * 100);
                     this.outputLabel.textContent = format.toUpperCase() + ` · ~${kb} KB`;
+                    document.getElementById('statOut').textContent = `~${kb} KB`;
+                    document.getElementById('statSave').textContent = isFinite(saved) ? (saved >= 0 ? `↓ ${saved}%` : `↑ ${Math.abs(saved)}%`) : '—';
                     if (isFinite(saved) && saved > 0) { this.savingsInfo.className = 'meta-pill savings'; this.savingsInfo.textContent = `↓ ${saved}% smaller`; }
                     else if (isFinite(saved) && saved < 0) { this.savingsInfo.className = 'meta-pill bigger'; this.savingsInfo.textContent = `↑ ${Math.abs(saved)}% larger`; }
                     else { this.savingsInfo.textContent = ''; }
                 }, `image/${format}`, q);
 
-                // Reset divider
+                // Reset inline divider
                 this.compBefore.style.clipPath = 'inset(0 50% 0 0)';
                 this.compDivider.style.left = '50%';
+            }
+
+            debouncePreview() {
+                clearTimeout(this._pTimer);
+                this._pTimer = setTimeout(() => this.updatePreview(), 120);
             }
 
             async convert() {
                 this.showProgress();
                 await new Promise(r => setTimeout(r, 40));
                 try {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = this.imgW; canvas.height = this.imgH;
-                    const format = this.formatSelect.value, bg = this.backgroundSelect.value;
-                    if (format === 'jpeg' && bg !== 'transparent') { ctx.fillStyle = bg; ctx.fillRect(0, 0, canvas.width, canvas.height); }
-                    ctx.drawImage(this.originalImage, 0, 0);
+                    const format = this.formatSelect.value;
                     const q = (format === 'jpeg' || format === 'webp') ? this.qualitySlider.value / 100 : undefined;
+                    const canvas = this.buildCanvas();
                     const blob = await new Promise(r => canvas.toBlob(r, `image/${format}`, q));
                     if (blob) {
                         this.convertedBlob = blob;
                         const kb = (blob.size / 1024).toFixed(1);
                         const saved = Math.round(((this.originalFile.size - blob.size) / this.originalFile.size) * 100);
                         this.outputLabel.textContent = format.toUpperCase() + ` · ${kb} KB`;
-                        if (isFinite(saved)) {
-                            this.savingsInfo.className = saved >= 0 ? 'meta-pill savings' : 'meta-pill bigger';
-                            this.savingsInfo.textContent = saved >= 0 ? `↓ ${saved}% smaller` : `↑ ${Math.abs(saved)}% larger`;
-                        }
+                        if (isFinite(saved)) { this.savingsInfo.className = saved >= 0 ? 'meta-pill savings' : 'meta-pill bigger'; this.savingsInfo.textContent = saved >= 0 ? `↓ ${saved}% smaller` : `↑ ${Math.abs(saved)}% larger`; }
                         this.hideProgress();
                         this.downloadBtn.style.display = 'inline-flex';
                         this.download();
@@ -1299,39 +2428,63 @@
                 a.href = url; a.download = `imageraft_${Date.now()}.${format}`;
                 document.body.appendChild(a); a.click();
                 setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
-                this.showToast(`Saved as .${format}`);
+                this.showToast(`✓ Saved as .${format}`);
             }
 
             showProgress() {
-                this.progressContainer.style.display = 'block';
-                this.convertBtn.disabled = true;
+                this.progressContainer.style.display = 'block'; this.convertBtn.disabled = true;
                 let p = 0;
                 this._pi = setInterval(() => { p = Math.min(p + 14, 90); this.progressFill.style.width = p + '%'; }, 40);
             }
-
             hideProgress() {
-                clearInterval(this._pi);
-                this.progressFill.style.width = '100%';
+                clearInterval(this._pi); this.progressFill.style.width = '100%';
                 setTimeout(() => { this.progressContainer.style.display = 'none'; this.progressFill.style.width = '0'; this.convertBtn.disabled = false; }, 300);
             }
 
             showToast(msg) {
                 this.toast.textContent = msg; this.toast.classList.add('show');
-                clearTimeout(this._tt); this._tt = setTimeout(() => this.toast.classList.remove('show'), 1800);
+                clearTimeout(this._tt); this._tt = setTimeout(() => this.toast.classList.remove('show'), 2000);
+            }
+
+            openModal() {
+                this.modalOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                // reset to compare tab
+                document.querySelectorAll('[data-mview]').forEach(t => t.classList.remove('active'));
+                document.querySelector('[data-mview="compare"]').classList.add('active');
+                this.modalCompBox.classList.remove('hidden');
+                this.modalSingleOrig.classList.remove('active');
+                this.modalSingleOut.classList.remove('active');
+                // reset modal divider
+                this.modalCompBefore.style.clipPath = 'inset(0 50% 0 0)';
+                this.modalCompDivider.style.left = '50%';
+            }
+            closeModal() {
+                this.modalOverlay.classList.remove('open');
+                document.body.style.overflow = '';
             }
 
             reset() {
                 this.originalFile = null; this.convertedBlob = null; this.imgW = 0; this.imgH = 0;
+                this.rotation = 0; this.flipH = false; this.flipV = false;
                 this.fileInput.value = '';
                 this.controlsSection.style.display = 'none';
                 this.previewSection.style.display = 'none';
                 this.progressContainer.style.display = 'none';
+                this.statsBar.style.display = 'none';
                 ['convertBtn', 'downloadBtn', 'resetBtn'].forEach(id => document.getElementById(id).style.display = 'none');
                 this.uploadSection.style.display = 'block';
                 this.hero.style.display = 'block';
                 this.formatSelect.value = 'jpeg';
                 this.qualitySlider.value = '90'; this.qualityValue.textContent = '90%';
                 this.backgroundSelect.value = 'white';
+                this.colourMode.value = 'original';
+                this.brightnessSlider.value = '0'; this.brightnessVal.textContent = '0';
+                this.contrastSlider.value = '0'; this.contrastVal.textContent = '0';
+                this.resizeW.value = ''; this.resizeH.value = '';
+                this.lockAspect.classList.add('locked');
+                document.getElementById('flipH').classList.remove('active');
+                document.getElementById('flipV').classList.remove('active');
                 this.originalImage.src = ''; this.convertedImage.src = '';
                 this.originalInfo.textContent = ''; this.savingsInfo.textContent = '';
                 this.qualityGroup.style.opacity = '1'; this.qualitySlider.disabled = false;
@@ -1340,6 +2493,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
+
         document.addEventListener('DOMContentLoaded', () => new ImageConverter());
     </script>
 </body>
